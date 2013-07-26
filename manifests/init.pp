@@ -87,6 +87,11 @@ class nginx (
   $mime_types = false
 ) inherits ::nginx::params {
 
+  # Create user for the server
+  user { $user:
+    ensure => present,
+  }
+
   package { $::nginx::params::package:
     alias  => 'nginx',
     ensure => installed,
